@@ -1,4 +1,9 @@
-const { languages } =  require('../utils/translate/lang.json') 
+const { languages } =  require('../../utils/translate/lang.json') 
+
+const listLang = languages.map((lang) =>{ return {
+    name: lang.language, 
+    value: lang.language
+}});
 
 module.exports = {
     name: 'setlang',
@@ -13,20 +18,11 @@ module.exports = {
             description: 'Choose language',
             type: 'STRING',
             required: true,
-            choices: [
-                {
-                    name: 'guildMemberAdd',
-                    value: 'guildMemberAdd',
-                },
-                {
-                    name: 'guildMemberRemove',
-                    value: 'guildMemberRemove',
-                }
-            ]
+            choices: listLang
         }
     ],
     runInteraction(client, interaction) {
-        
-        interaction.reply({ content: `Emit ${evtChoice} event `, ephemeral: true });
+        console.log(listLang)
+        //interaction.reply({ content: `Emit ${evtChoice} event `, ephemeral: true });
     }
 };
