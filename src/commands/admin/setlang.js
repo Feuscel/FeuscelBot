@@ -8,10 +8,6 @@ const listLang = languages.map((lang) =>{ return {
 module.exports = {
     name: 'setlang',
     description: 'Set language of the bot',
-    run(client, message, args) {
-        
-        message.reply(`Emit ${args[0]} event`)
-    },
     options: [
         {
             name: 'language',
@@ -21,8 +17,12 @@ module.exports = {
             choices: listLang
         }
     ],
+    run(client, message, args) {
+        
+        message.reply(`Emit ${args[0]} event`)
+    },
+    
     runInteraction(client, interaction) {
-        console.log(listLang)
         //interaction.reply({ content: `Emit ${evtChoice} event `, ephemeral: true });
     }
 };
