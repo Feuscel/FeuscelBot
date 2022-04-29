@@ -21,6 +21,7 @@ module.exports = {
             .addFields(
                 {name: 'Total member', value: `\`${object.guild.memberCount}\``, inline: true},
                 {name: 'Description', value: `${object.guild.description == null ? 'No server description' : object.guild.description}`, inline: true},
+                {name: 'Id', value: `\`${object.guild.id}\``, inline: true},
                 {name: 'Created at', value: `${Formatters.time(dayjs(object.guild.createdAt).unix(), Formatters.TimestampStyles.ShortDateTime)} (${Formatters.time(dayjs(object.guild.createdAt).unix(), Formatters.TimestampStyles.RelativeTime)})`},
             )
             .setTimestamp()
