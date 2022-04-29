@@ -5,8 +5,8 @@ const client = new Client({ intents: 515 });
 
 client.commands = new Collection();
 
-const handlersFolder = fs.readdirSync('./utils/handlers').filter(file => file.endsWith('.js'));
-handlersFolder.forEach(handler => { require(`./utils/handlers/${handler}`)(client) });
-require('./utils/process/process.js').createEventProcess();
+const handlersFolder = fs.readdirSync('./src/utils/handlers').filter(file => file.endsWith('.js'));
+handlersFolder.forEach(handler => { require(`./src/utils/handlers/${handler}`)(client) });
+require('./src/utils/process/process.js').createEventProcess();
 
 client.login(process.env.DISCORD_TOKEN);
