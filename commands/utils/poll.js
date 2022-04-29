@@ -5,14 +5,8 @@ module.exports = {
     description: 'Post your own poll',
     async run(client, message, args) {
         if(!args[0]) return message.reply('Enter a yes/no question for the poll');
-        const embed = new MessageEmbed()
-            .setTitle('Poll')
-            .setColor('#00a3b5')
-            .setDescription(args.slice(0).join(' '))
-            .setTimestamp()
-            .setFooter({ text: `New poll generate by ${message.author.tag}`});
 
-        const poll = await message.reply({ embeds: [embed], fetchReply: true });
+        const poll = await message.reply({ embeds: [this.embed(client, message, 'Poll', args.slice(0).join(' '))], fetchReply: true });
         poll.react('❌');
         poll.react('✅');
     },
@@ -34,15 +28,20 @@ module.exports = {
         const pollTitle = interaction.options.getString('title');
         const pollContent = interaction.options.getString('content');
 
+        const poll = await interaction.reply({ embeds: [this.embed(client, interaction, pollTitle, pollContent)], fetchReply: true });
+        poll.react('❌');
+        poll.react('✅');
+    },
+
+    embed(client, object, pollTitle, pollContent) {
+        const type = object.type == 'DEFAULT' ? object.author : object.user;
+
         const embed = new MessageEmbed()
             .setTitle(pollTitle)
             .setColor('#00a3b5')
             .setDescription(pollContent)
             .setTimestamp()
-            .setFooter({ text: `New poll generate by ${interaction.user.tag}`});
-
-        const poll = await interaction.reply({ embeds: [embed], fetchReply: true });
-        poll.react('❌');
-        poll.react('✅');
+            .setFooter({ text: `New poll generate by ${type.tag}`});
+        return embed;
     }
 };

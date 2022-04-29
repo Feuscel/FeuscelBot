@@ -11,6 +11,10 @@ module.exports = {
         let roles = member.roles.cache.map(role => role).join(', ').replace(/, @everyone|@everyone/gi, ' ');
         // botEmoji = URL.createObjectURL(new LocalFileData(path.join(__dirname, '..', '..', 'ressources', 'img', 'robot-emojie.png').toString()));
         // humanEmoji = URL.createObjectURL(new LocalFileData(path.join(__dirname, '..', '..', 'ressources', 'img', 'man-emoji.png').toString()));
+        
+        interaction.reply({ embeds: [this.embed(client, interaction, member, roles)], ephemeral: true }); 
+    },
+    embed(client, object, member, roles) {
         const embed = new MessageEmbed()
             .setAuthor({ name: `${member.user.tag} (${member.id})`})
             .setColor('#8e48f7')
@@ -24,7 +28,6 @@ module.exports = {
                 { name: 'Join the server', value: `${Formatters.time(dayjs(member.joinedTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime)}`},
 
             )
-        
-        interaction.reply({ embeds: [embed], ephemeral: true }); 
+        return embed;
     }
 };
