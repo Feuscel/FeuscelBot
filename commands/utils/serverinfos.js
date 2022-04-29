@@ -1,4 +1,5 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Formatters } = require('discord.js');
+const dayjs = require('dayjs');
 
 module.exports = {
     name: 'serverinfos',
@@ -18,7 +19,9 @@ module.exports = {
             .setTitle('💻 Server informations')
             .setThumbnail(object.guild.iconURL() == null ? `${client.user.displayAvatarURL()}` : `${object.guild.iconURL()}`)
             .addFields(
-                {name: 'Total member', value: `\`${object.guild.memberCount}\``, inline: true}
+                {name: 'Total member', value: `\`${object.guild.memberCount}\``, inline: true},
+                {name: 'Description', value: `${object.guild.description == null ? 'No server description' : object.guild.description}`, inline: true},
+                {name: 'Created at', value: `${Formatters.time(dayjs(object.guild.createdAt).unix(), Formatters.TimestampStyles.ShortDateTime)} (${Formatters.time(dayjs(object.guild.createdAt).unix(), Formatters.TimestampStyles.RelativeTime)})`},
             )
             .setTimestamp()
             .setFooter({ text: type.username, iconURL: type.displayAvatarURL() });
