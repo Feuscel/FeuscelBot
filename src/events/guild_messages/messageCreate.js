@@ -10,6 +10,10 @@ module.exports = {
         const cmdName = args.shift().toLowerCase();
         if(cmdName.length == 0) return;
         let cmd = client.commands.get(cmdName);
+        if(!cmd) return message.reply('This command does not exist');
+        if(cmd.ownerOnly && message.author.id != message.guild.ownerId) return message.reply('Only owner can type this command');
+        if(!message.member.permissions.has([cmd.permissions])) return message.reply(`You don't have the permissions for this ${cmd.name}, you need this permission : ${cmd.permissions.join(', ')}.`);
+
         if(cmd) cmd.run(client, message, args);
     },
 };

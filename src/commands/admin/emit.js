@@ -1,6 +1,11 @@
 module.exports = {
     name: 'emit',
     description: 'Emmit event',
+    category: 'admin',
+    permissions:['ADMINISTRATOR'],
+    ownerOnly: false,
+    usage:"emit [eventName]",
+    examples:['emit guildMemberAdd', 'emit guildMemberRemove'],
     options: [
         {
             name: 'event',

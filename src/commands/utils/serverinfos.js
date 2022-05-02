@@ -4,7 +4,11 @@ const dayjs = require('dayjs');
 module.exports = {
     name: 'serverinfos',
     description: '💻 Server informations',
-
+    category: 'utils',
+    permissions:["SEND_MESSAGES"],
+    ownerOnly: false,
+    usage:"serverinfos",
+    examples:['serverinfos'],
     run(client, message, args) {
         message.channel.send({ embeds: [ this.embed(client, message, args) ] }); 
 

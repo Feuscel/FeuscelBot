@@ -2,7 +2,12 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'ping',
-    description: 'Ping',
+    description: 'Show latency',
+    category: 'utils',
+    permissions:["SEND_MESSAGES"],
+    ownerOnly: false,
+    usage:"ping",
+    examples:['ping'],
 
     run(client, message, args) {
     

@@ -6,6 +6,11 @@ var path = require('path');
 module.exports = {
     name: 'userinfo',
     type:'USER',
+    category: 'contextual',
+    permissions:["SEND_MESSAGES"],
+    ownerOnly: false,
+    usage:"Use contextual menu on discord",
+    examples:['Use contextual menu on discord'],
     async runInteraction(client, interaction) {
         const member = await interaction.guild.members.fetch(interaction.targetId);
         let roles = member.roles.cache.map(role => role).join(', ').replace(/, @everyone|@everyone/gi, ' ');

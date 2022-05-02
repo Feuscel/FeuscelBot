@@ -3,13 +3,11 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'poll',
     description: 'Post your own poll',
-    async run(client, message, args) {
-        if(!args[0]) return message.reply('Enter a yes/no question for the poll');
-
-        const poll = await message.reply({ embeds: [this.embed(client, message, 'Poll', args.slice(0).join(' '))], fetchReply: true });
-        poll.react('❌');
-        poll.react('✅');
-    },
+    category: 'utils',
+    permissions:[],
+    ownerOnly: false,
+    usage:" ",
+    examples:['ping'],
     options: [
         {
             name: 'title',
@@ -24,6 +22,14 @@ module.exports = {
             required: true,
         }
     ],
+    async run(client, message, args) {
+        if(!args[0]) return message.reply('Enter a yes/no question for the poll');
+
+        const poll = await message.reply({ embeds: [this.embed(client, message, 'Poll', args.slice(0).join(' '))], fetchReply: true });
+        poll.react('❌');
+        poll.react('✅');
+    },
+   
     async runInteraction(client, interaction) {
         const pollTitle = interaction.options.getString('title');
         const pollContent = interaction.options.getString('content');

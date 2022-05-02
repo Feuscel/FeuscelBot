@@ -8,6 +8,11 @@ const listLang = languages.map((lang) =>{ return {
 module.exports = {
     name: 'setlang',
     description: 'Set language of the bot',
+    category: 'admin',
+    permissions:["ADMINISTRATOR"],
+    ownerOnly: false,
+    usage:" ",
+    examples:['ping'],
     options: [
         {
             name: 'language',
