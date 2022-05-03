@@ -1,0 +1,15 @@
+# construct docker
+docker build -t my-bot .
+# run in bg
+docker run -d my-bot
+# Get the container!
+docker ps
+
+# Print the logs
+docker logs <our container's ID>
+
+# Get inside the container
+docker exec -it <container id> /bin/bash
+
+
+https://github.com/nomsi/docker-discordjs-tutorial
